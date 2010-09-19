@@ -96,6 +96,8 @@ function writeVariableBitRateIndexFile(inputFileName, indexFiles) {
 
   fs.writeFileSync(fileName, contents.join(''));
   return fileName.split('/').pop();
+}
+
 function handleUpload(req, res) {
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files) {
