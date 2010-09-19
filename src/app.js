@@ -7,7 +7,7 @@ var formidable = require('../lib/formidable')
   , sys = require('sys');
 
 var PORT = 4444
-  , HOST_NAME = 'mjrusso.com'
+  , HOST_NAME = 'localhost'
   , SERVER_URL = 'http://' + HOST_NAME + ':' + PORT // the address at which the segmented files and index files will be made available
   , SEGMENTER_LOCATION = path.join(__dirname, '..', 'segmenter/segmenter') // the location of the segmenter binary
   , SEGMENT_DURATION = 5 // the length of each segment, in seconds
