@@ -1,3 +1,6 @@
 [submodule "lib/formidable"]
 	path = lib/formidable
 	url = git://github.com/felixge/node-formidable.git
+[submodule "lib/nexpect"]
+	path = lib/nexpect
+	url = git://github.com/nodejitsu/nexpect.git
