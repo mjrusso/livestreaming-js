@@ -75,8 +75,7 @@ function createFFmpegCommand(command, inputFileName, bitRate) {
 
 function createSegmenterCommand(inputFileName, bitRate) {
   var command = [
-     'cd ' + STREAM_OUTPUT_DIR + ';'
-   , SEGMENTER_LOCATION
+     SEGMENTER_LOCATION
    , createTempOutputFileName(inputFileName, bitRate)
    , SEGMENT_DURATION
    , createMPEGTSPrefix(inputFileName, bitRate)
@@ -96,8 +95,6 @@ function writeVariableBitRateIndexFile(inputFileName, indexFiles) {
 
   fs.writeFileSync(fileName, contents.join(''));
   return fileName.split('/').pop();
-}
-
 function handleUpload(req, res) {
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files) {
@@ -173,4 +170,5 @@ server = http.createServer(function(req, res) {
     );
 });
 
+process.chdir(STREAM_OUTPUT_DIR);
 server.listen(PORT);
