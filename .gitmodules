@@ -4,3 +4,6 @@
 [submodule "lib/mime"]
 	path = lib/mime
 	url = git://github.com/mjrusso/node-mime.git
+[submodule "lib/formidable"]
+	path = lib/formidable
+	url = git://github.com/felixge/node-formidable.git
