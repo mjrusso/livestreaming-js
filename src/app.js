@@ -108,12 +108,12 @@ function handleUpload(req, res) {
         .spawn(command.ffmpeg)
         .run(function(err) {
           if (err) throw err;
-          console.log("ran ffmpeg");
+          console.log("ran ffmpeg: " + command.ffmpeg);
           nexpect
             .spawn(command.segmenter)
             .run(function(err) {
               if (err) throw err;
-              console.log("ran segmenter");
+              console.log("ran segmenter: " + command.segmenter);
               i--;
               if (i === 0) respondUpload(req, res, inputFileName, indexFiles);
             });
@@ -128,6 +128,7 @@ function respondUpload(req, res, inputFileName, indexFiles) {
   res.writeHead(200, {'content-type': 'text/plain'});
   res.write(HTTP_PREFIX + variableBitRateIndexFile);
   res.end();
+  console.log("finished handling request");
 }
 
 function handleStatic(req, res) {
