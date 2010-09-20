@@ -2,7 +2,7 @@
 
 This license applies to all parts of this project that are not externally maintained libraries.  The externally maintained libraries used by this project are:
 
-- Segmenter, located at segmenter/segmenter.c.  Segmenter is copyrighted by Chase Douglas and has a GPLv2 license.
+- [Segmenter](http://svn.assembla.com/svn/legend/segmenter/), located at segmenter/segmenter.c.  Segmenter is copyrighted by Chase Douglas and has a GPLv2 license.
 
 This project also makes use of a number of Git Submodules, located at /lib.  Consult each submodule for licensing details.
 
