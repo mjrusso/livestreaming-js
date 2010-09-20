@@ -12,7 +12,7 @@ Special thanks to [Carson McDonald](http://www.ioncannon.net/about/) for [trailb
 
 The workflow implemented by this system looks (very crudely) like this:
 
-![system](assets/system.png)
+![system](http://github.com/mjrusso/livestreaming-js/raw/master/assets/system.png)
 
 In more detail:
 
