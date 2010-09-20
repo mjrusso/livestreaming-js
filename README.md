@@ -103,6 +103,14 @@ To run the server:
 
     node src/app.js
 
+When a file is uploaded, the processing chain (Encoder + Segmenter) will be immediately kicked off.
+
+Once this processing is complete, and all segments and index files have been generated, the URL of the variable bitrate index file will be returned as the response body of the HTTP upload request.
+
+When this URL is supplied to any compatible client, adaptive bitrate streaming will be performed via HTTP Live Streaming.
+
+### Defaults
+
 By default, a server will be started at `http://localhost:4444`.  (To change the defaults, edit the `HOST_NAME` and `PORT` variables in `src/app.js`.)
 
 Assuming the default values:
@@ -110,5 +118,3 @@ Assuming the default values:
 - an upload form will be rendered when visiting `http://localhost:4444` directly via a browser
 - video uploads will be performed against `http://localhost:4444/upload`
 - segment files and index files will be served from `http://localhost:4444/streams`
-
-When a file is uploaded, the processing chain (Encoder + Segmenter) will be immediately kicked off.  Once this processing is complete, and all segments and index files have been generated, the URL of the variable bitrate index file will be returned as the response body of the HTTP upload request.  Furthermore, when this URL is supplied to any compatible client, adaptive bitrate streaming will be performed via HTTP Live Streaming.
