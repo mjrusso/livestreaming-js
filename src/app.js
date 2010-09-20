@@ -7,7 +7,8 @@ var formidable = require('../lib/formidable')
   , sys = require('sys');
 
 var PORT = 4444
-  , SERVER_URL = 'http://localhost:' + PORT // the address at which the segmented files and index files will be made available
+  , HOST_NAME = 'localhost'
+  , SERVER_URL = 'http://' + HOST_NAME + ':' + PORT // the address at which the segmented files and index files will be made available
   , SEGMENTER_LOCATION = path.join(__dirname, '..', 'segmenter/segmenter') // the location of the segmenter binary
   , SEGMENT_DURATION = 5 // the length of each segment, in seconds
   , WEB_ROOT = '/streams/'
@@ -75,8 +76,7 @@ function createFFmpegCommand(command, inputFileName, bitRate) {
 
 function createSegmenterCommand(inputFileName, bitRate) {
   var command = [
-     'cd ' + STREAM_OUTPUT_DIR + ';'
-   , SEGMENTER_LOCATION
+     SEGMENTER_LOCATION
    , createTempOutputFileName(inputFileName, bitRate)
    , SEGMENT_DURATION
    , createMPEGTSPrefix(inputFileName, bitRate)
@@ -111,12 +111,12 @@ function handleUpload(req, res) {
         .spawn(command.ffmpeg)
         .run(function(err) {
           if (err) throw err;
-          console.log("ran ffmpeg");
+          console.log("ran ffmpeg: " + command.ffmpeg);
           nexpect
             .spawn(command.segmenter)
             .run(function(err) {
               if (err) throw err;
-              console.log("ran segmenter");
+              console.log("ran segmenter: " + command.segmenter);
               i--;
               if (i === 0) respondUpload(req, res, inputFileName, indexFiles);
             });
@@ -131,6 +131,7 @@ function respondUpload(req, res, inputFileName, indexFiles) {
   res.writeHead(200, {'content-type': 'text/plain'});
   res.write(HTTP_PREFIX + variableBitRateIndexFile);
   res.end();
+  console.log("finished handling request");
 }
 
 function handleStatic(req, res) {
@@ -173,4 +174,5 @@ server = http.createServer(function(req, res) {
     );
 });
 
+process.chdir(STREAM_OUTPUT_DIR);
 server.listen(PORT);
